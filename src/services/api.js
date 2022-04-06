@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://191.252.205.157:3030",
+  baseURL: "https://vps38322.publiccloud.com.br:3030",
   // baseURL: "http://192.168.100.8:3030/",
 });
 
