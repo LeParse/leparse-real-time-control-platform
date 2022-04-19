@@ -19,7 +19,7 @@ const Enterprise = () => {
           history.goBack();
         }}
         id="back"
-        size={36}
+        size={24}
       />
       <div className="content">
         <h1>{enterprise?.name}</h1>
@@ -38,6 +38,7 @@ const Enterprise = () => {
             <p>
               {enterprise?.address.street}, {enterprise?.address.number}
             </p>
+            <p>{enterprise?.address.zip_code}</p>
             <p>{enterprise?.address.complement}</p>
           </div>
           <div>

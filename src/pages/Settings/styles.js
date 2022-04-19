@@ -10,15 +10,15 @@ export const Container = styled.div`
   .content {
     width: 100%;
     height: 100%;
-    padding: 3rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     justify-content: space-evenly;
 
     h1.title {
-      font-size: 3rem;
-      margin: 3rem;
+      font-size: 1.5rem;
+      margin: 1.5rem;
       position: absolute;
       left: 0;
       top: 8vh;
@@ -29,24 +29,22 @@ export const Container = styled.div`
       flex-direction: column;
       height: 90%;
       flex: 1;
-      padding: 3rem;
+      padding: 1.5rem;
       border-right: 1px solid rgb(0, 128, 0, 0.35);
 
       h1 {
         color: rgba(0, 0, 0, 0.75);
-        margin-bottom: 3rem;
+        margin-bottom: 1.5rem;
       }
 
       .button {
         width: 100%;
-        height: 105px;
-        padding: 24px;
-        margin-top: 3rem;
+        padding: 1.25rem;
         color: white;
         font-weight: bold;
-        font-size: 24px;
+        font-size: 1rem;
         background-color: rgb(0, 128, 0);
-        border-radius: 16px;
+        border-radius: 1rem;
         cursor: pointer;
         transition: 0.1s ease;
 
@@ -63,21 +61,20 @@ export const Container = styled.div`
         padding: 1rem;
 
         .listItem {
-          margin-bottom: 1rem;
+          margin-bottom: 0.5rem;
           border-radius: 1rem;
           width: 100%;
-          height: 5rem;
           border: 1px solid rgb(0, 128, 0);
           display: flex;
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
-          padding: 1rem;
+          padding: 0.85rem;
           cursor: pointer;
 
           h3 {
             color: rgba(0, 0, 0, 0.8);
-            font-size: 1.35rem;
+            font-size: 0.85rem;
           }
 
           svg {
@@ -174,14 +171,14 @@ export const CreateEnterpriseModal = styled(animated.div)`
           margin: 1rem;
 
           label {
-            font-size: 1.5rem;
+            font-size: 1rem;
             margin: 1rem;
           }
 
           input {
             background-color: transparent;
             width: 100%/3;
-            font-size: 1.5rem;
+            font-size: 1rem;
             color: black;
             padding: 1rem;
             outline: none;
@@ -197,13 +194,13 @@ export const CreateEnterpriseModal = styled(animated.div)`
 
       h3 {
         align-self: flex-start;
-        font-size: 3rem;
-        margin: 1.5rem;
+        font-size: 1.5rem;
+        margin: 1rem;
       }
 
       .addUnitiesContainer {
         width: 100%;
-        padding: 3rem;
+        padding: 1.5rem;
 
         display: flex;
         flex-direction: row;
@@ -215,7 +212,7 @@ export const CreateEnterpriseModal = styled(animated.div)`
         .addUnitiesUnity {
           background-color: transparent;
           width: 100%;
-          font-size: 1.5rem;
+          font-size: 1rem;
           color: black;
           padding: 1rem;
           outline: none;
@@ -231,7 +228,7 @@ export const CreateEnterpriseModal = styled(animated.div)`
         .addUnityButton {
           cursor: pointer;
           transition: 0.1s ease;
-          margin: 1.5rem;
+          margin: 1rem;
 
           &:hover {
             filter: brightness(0.5);
@@ -241,8 +238,8 @@ export const CreateEnterpriseModal = styled(animated.div)`
         .removeUnityButton {
           cursor: pointer;
           transition: 0.1s ease;
-          margin-left: -3rem;
-          margin-right: 3rem;
+          margin-left: -1.5rem;
+          margin-right: 1.5rem;
 
           &:hover {
             filter: brightness(0.5);
@@ -252,14 +249,13 @@ export const CreateEnterpriseModal = styled(animated.div)`
 
       button {
         width: 100%;
-        height: 105px;
-        padding: 24px;
-        margin-top: 3rem;
+        padding: 1.25rem;
+        margin-top: 1.5rem;
         color: white;
         font-weight: bold;
-        font-size: 24px;
+        font-size: 1.25rem;
         background-color: rgb(0, 128, 0);
-        border-radius: 16px;
+        border-radius: 1rem;
         cursor: pointer;
         transition: 0.1s ease;
 
@@ -271,7 +267,7 @@ export const CreateEnterpriseModal = styled(animated.div)`
 
     .enterprisesContainer {
       width: 100%;
-      padding: 3rem;
+      padding: 1.5rem;
 
       display: flex;
       flex-direction: row;
@@ -281,9 +277,9 @@ export const CreateEnterpriseModal = styled(animated.div)`
       flex-wrap: wrap;
 
       .enterpriseSelect {
-        background-color: rgb(0, 128, 0);
-        padding: 3rem;
-        font-size: 1.5rem;
+        background-color: rgb(167, 0, 0);
+        padding: 1.5rem;
+        font-size: 1rem;
         color: white;
         border-radius: 1rem;
         cursor: pointer;
@@ -296,19 +292,19 @@ export const CreateEnterpriseModal = styled(animated.div)`
       }
 
       .enterpriseSelected {
-        background-color: rgb(167, 0, 0);
+        background-color: rgb(0, 128, 0);
       }
     }
 
     .searchInput {
       background-color: transparent;
-      font-size: 1.5rem;
+      font-size: 1rem;
       color: black;
       padding: 1rem;
       outline: none;
       border-bottom: 1px solid rgb(0, 128, 0);
       transition: 0.2s ease;
-      margin-left: 1.5rem;
+      margin-left: 1rem;
 
       &:focus {
         border-bottom: 1px solid rgb(0, 200, 0);

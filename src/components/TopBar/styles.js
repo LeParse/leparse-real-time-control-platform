@@ -8,10 +8,10 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px;
+  padding: 1.25rem;
 
   img {
-    width: 3rem;
+    width: 2rem;
   }
 
   .leftContainer {
@@ -22,7 +22,7 @@ export const Container = styled.div`
 
     h1 {
       margin-left: 24px;
-      font-size: 1.75rem;
+      font-size: 1.25rem;
       color: rgba(0, 0, 0, 0.75);
     }
   }
@@ -35,7 +35,7 @@ export const Container = styled.div`
 
     h1 {
       margin-left: 24px;
-      font-size: 1.75rem;
+      font-size: 1.25rem;
     }
   }
 `;

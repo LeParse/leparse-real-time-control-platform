@@ -1,17 +1,18 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 15vw;
-  height: 8vh;
+  width: 8vh;
+  height: 15vw;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: white;
 
   position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 90%);
+  bottom: 50%;
+  left: 0;
+  transform: translate(-90%, 50%);
 
   box-shadow: 0 0 25px -15px black;
   border: 1px solid rgba(0, 0, 0, 0.25);
@@ -19,11 +20,11 @@ export const Container = styled.div`
   transition: 0.1s ease;
 
   &:hover {
-    transform: translate(-50%, 0);
+    transform: translate(0, 50%);
   }
 
   .links {
-    margin: 24px;
+    margin: 1.25rem;
     transition: 0.1s ease;
 
     &:hover {

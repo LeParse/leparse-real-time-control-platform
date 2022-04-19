@@ -11,7 +11,7 @@ export const Container = styled.div`
   z-index: 1;
 
   h1 {
-    font-size: 36px;
+    font-size: 1.5rem;
     font-weight: bold;
   }
 
@@ -31,7 +31,7 @@ export const Container = styled.div`
       position: relative;
 
       label {
-        font-size: 1.75rem;
+        font-size: 1.25rem;
         color: rgba(0, 0, 0, 0.25);
         position: absolute;
         top: 24px;
@@ -42,7 +42,7 @@ export const Container = styled.div`
 
       input {
         background-color: transparent;
-        font-size: 1.75rem;
+        font-size: 1.25rem;
         color: black;
         padding: 24px;
         padding-left: 48px;
@@ -65,11 +65,11 @@ export const Container = styled.div`
 
     button[type="submit"] {
       width: 75%;
-      height: 105px;
-      padding: 24px;
+      height: 64px;
+      padding: 1.25rem;
       color: white;
       font-weight: bold;
-      font-size: 24px;
+      font-size: 1.25rem;
       background-color: rgb(0, 128, 0);
       border-radius: 16px;
       cursor: pointer;

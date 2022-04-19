@@ -44,7 +44,7 @@ export const Container = styled(animated.div)`
       return props.type === "ask" ? "flex-start" : "center";
     }};
     .title {
-      font-size: 1.75rem;
+      font-size: 1.25rem;
       font-weight: bold;
       flex: 1;
       text-align: right;
@@ -63,7 +63,7 @@ export const Container = styled(animated.div)`
       flex: 1;
       background-color: rgba(0, 0, 167, 1);
       color: white;
-      font-size: 1.5rem;
+      font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
       transition: 0.1s ease;

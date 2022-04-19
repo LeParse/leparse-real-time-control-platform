@@ -4,6 +4,7 @@ import Authentication from "./pages/Authentication";
 import Home from "./pages/Home";
 import Settings from "./pages/Settings";
 import VerifyEmail from "./pages/VerifyEmail";
+import User from "./pages/User";
 import Enterprise from "./pages/Enterprise";
 
 import TopBar from "./components/TopBar";
@@ -27,6 +28,7 @@ function App() {
             <Route exact path="/app" component={Home} />
             <Route path="/app/settings" component={Settings} />
             <Route path="/app/enterprise/:id" component={Enterprise} />
+            <Route path="/app/user/:id" component={User} />
           </Route>
         </Switch>
         <Dock />

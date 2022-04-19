@@ -248,6 +248,10 @@ const Settings = () => {
     history.push(`/app/enterprise/${enterprises[i]._id}`);
   }
 
+  function showUserInfo(i) {
+    history.push(`/app/user/${users[i]._id}`);
+  }
+
   return (
     <Container>
       <div className="content">
@@ -267,7 +271,7 @@ const Settings = () => {
                   <h3>{_.name}</h3>
                   <AiFillCloseCircle
                     onClick={() => removeEnterprise(i)}
-                    size={26}
+                    size={18}
                     color="rgb(0,100,0)"
                   />
                 </div>
@@ -288,11 +292,17 @@ const Settings = () => {
           <div className="list">
             {users.map((_, i) => {
               return (
-                <div key={i} className="listItem">
+                <div
+                  key={i}
+                  className="listItem"
+                  onClick={() => {
+                    showUserInfo(i);
+                  }}
+                >
                   <h3>{_.name}</h3>
                   <AiFillCloseCircle
                     onClick={() => removeUser(i)}
-                    size={26}
+                    size={18}
                     color="rgb(0,100,0)"
                   />
                 </div>
@@ -342,7 +352,7 @@ const Settings = () => {
                 <AiFillCloseCircle
                   id="closeModal"
                   color="rgb(0,100,0)"
-                  size={36}
+                  size={32}
                   onClick={() => {
                     setIsEnterpriseModalVisible(false);
                     setIsLoading(false);
@@ -484,7 +494,7 @@ const Settings = () => {
                     })}
                     <AiFillPlusCircle
                       className="addUnityButton"
-                      size={48}
+                      size={36}
                       color="rgb(0,100,0)"
                       onClick={addUnity}
                     />
@@ -536,7 +546,7 @@ const Settings = () => {
                 <AiFillCloseCircle
                   id="closeModal"
                   color="rgb(0,100,0)"
-                  size={36}
+                  size={32}
                   onClick={() => {
                     setIsUserModalVisible(false);
                     setIsLoading(false);
@@ -594,7 +604,7 @@ const Settings = () => {
                         justifyContent: "center",
                       }}
                     >
-                      <AiOutlineSearch size={32} />
+                      <AiOutlineSearch size={18} />
                       <input
                         value={searchEnterpriseModalInputValue}
                         onChange={(e) => {
@@ -607,7 +617,6 @@ const Settings = () => {
                   </div>
                   <div className="enterprisesContainer">
                     {enterprises
-                      // eslint-disable-next-line
                       .filter((v) => {
                         if (searchEnterpriseModalInputValue === "") {
                           return v;

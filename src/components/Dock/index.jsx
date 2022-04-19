@@ -11,13 +11,13 @@ const Dock = () => {
   return (
     <Container>
       <Link className="links" to="/app">
-        <AiFillHome size={42} color="rgb(0,128,0)" />
+        <AiFillHome size={24} color="rgb(0,128,0)" />
       </Link>
       <Link className="links" to="/app/settings">
-        <AiFillSetting size={42} color="rgb(0,128,0)" />
+        <AiFillSetting size={24} color="rgb(0,128,0)" />
       </Link>
       <Link className="links" to="#" onClick={logout}>
-        <AiOutlineLogout size={42} color="rgb(0,128,0)" />
+        <AiOutlineLogout size={24} color="rgb(0,128,0)" />
       </Link>
     </Container>
   );

@@ -47,7 +47,9 @@ const AuthProvider = ({ children }) => {
   }
 
   function logout() {
-    alert("LOGOUT");
+    localStorage.removeItem("@prime-control-platform-user");
+    localStorage.removeItem("@prime-control-platform-token");
+    history.replace("/");
   }
 
   function notify(type, text) {
