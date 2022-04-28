@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://vps38322.publiccloud.com.br:3030",
-  // baseURL: "http://192.168.100.8:3030/",
+  // baseURL: "http://vps38322.publiccloud.com.br:3030",
+  baseURL: "http://192.168.100.8:3030/",
 });
 
 api.interceptors.response.use(

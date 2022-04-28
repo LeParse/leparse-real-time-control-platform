@@ -39,7 +39,13 @@ const Authentication = (props) => {
   async function submitForm(e) {
     e.preventDefault();
     setIsLoading(true);
-    await login(email, password);
+    login(email, password)
+      .then(() => {
+        notify("info", "Logged!");
+      })
+      .catch((err) => {
+        notify("error", "Error on Login!");
+      });
     setIsLoading(false);
   }
 

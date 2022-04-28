@@ -25,25 +25,33 @@ const AuthProvider = ({ children }) => {
   ] = useStateM(undefined);
   const [isNotificationVisible, setIsNotificationVisible] = useState(false);
 
-  async function login(username, password) {
-    const { data } = await api.post("/mongo-db/login-web", {
-      email: username,
-      password,
+  function login(username, password) {
+    return new Promise((resolve, reject) => {
+      api
+        .post("/mongo-db/login-web", {
+          email: username,
+          password,
+        })
+        .then(({ data }) => {
+          data.user && setUser(data.user);
+
+          data.user &&
+            localStorage.setItem(
+              "@prime-control-platform-user",
+              JSON.stringify(data.user)
+            );
+          data.token &&
+            localStorage.setItem("@prime-control-platform-token", data.token);
+
+          if (data.token) api.defaults.headers["Authorization"] = data.token;
+
+          history.push("/app");
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
     });
-
-    data.user && setUser(data.user);
-
-    data.user &&
-      localStorage.setItem(
-        "@prime-control-platform-user",
-        JSON.stringify(data.user)
-      );
-    data.token &&
-      localStorage.setItem("@prime-control-platform-token", data.token);
-
-    if (data.token) api.defaults.headers["Authorization"] = data.token;
-
-    history.push("/app");
   }
 
   function logout() {
