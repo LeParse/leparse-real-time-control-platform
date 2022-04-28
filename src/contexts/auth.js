@@ -26,7 +26,7 @@ const AuthProvider = ({ children }) => {
   const [isNotificationVisible, setIsNotificationVisible] = useState(false);
 
   async function login(username, password) {
-    const { data } = await api.post("/mongo-db/login", {
+    const { data } = await api.post("/mongo-db/login-web", {
       email: username,
       password,
     });
