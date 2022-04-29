@@ -11,6 +11,7 @@ import Loader from "react-loader-spinner";
 import { useTransition, animated } from "react-spring";
 import { useAuth } from "../../contexts/auth";
 import InputMask from "react-input-mask";
+import ToggleButton from "react-toggle-button";
 
 import api from "../../services/api";
 
@@ -32,6 +33,7 @@ const Settings = () => {
   const [nameUser, setNameUser] = useState("");
   const [emailUser, setEmailUser] = useState("");
   const [phoneUser, setPhoneUser] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
   const [selectedEnterpriseIdUser, setSelectedEnterpriseIdUser] = useState();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -128,7 +130,7 @@ const Settings = () => {
       };
       api
         .post("/mongo-db/enterprise/create", ent)
-        .then(() => {
+        .then(({ data }) => {
           setIsEnterpriseModalVisible(false);
           setIsLoading(false);
           setName("");
@@ -141,7 +143,7 @@ const Settings = () => {
           setComplement("");
           setZipCode("");
           setUnities([""]);
-          setEnterprises((ents) => [...ents, ent]);
+          setEnterprises((ents) => [...ents, data]);
           notify("info", "Enterprise created!");
         })
         .catch((err) => {
@@ -170,6 +172,7 @@ const Settings = () => {
           cod_enterprise: selectedEnterpriseIdUser,
           cod_unity: [],
           groups: ["Admin", "Gerente"],
+          isAdmin,
         })
         .then(() => {
           setIsUserModalVisible(false);
@@ -181,7 +184,6 @@ const Settings = () => {
           notify("info", "E-mail with confirmation sent!");
         })
         .catch((err) => {
-          console.log(err);
           notify("error", "Error creating user!");
         });
     } else {
@@ -217,6 +219,7 @@ const Settings = () => {
             let arr = enterprises.filter((_, i) => i !== index);
             setEnterprises(arr);
             notify("info", "Enterprise removed!");
+            history.goBack();
           })
           .catch((err) => {
             notify("error", "Error removing enterprise!");
@@ -236,6 +239,7 @@ const Settings = () => {
             let arr = users.filter((_, i) => i !== index);
             setUsers(arr);
             notify("info", "User removed!");
+            history.goBack();
           })
           .catch((err) => {
             notify("error", "Error removing user!");
@@ -245,6 +249,7 @@ const Settings = () => {
   }
 
   function showEnterpriseInfo(i) {
+    console.log(enterprises[i]._id);
     history.push(`/app/enterprise/${enterprises[i]._id}`);
   }
 
@@ -356,6 +361,16 @@ const Settings = () => {
                   onClick={() => {
                     setIsEnterpriseModalVisible(false);
                     setIsLoading(false);
+                    setName("");
+                    setPartner("");
+                    setEmail("");
+                    setPhone("");
+                    setCnpj("");
+                    setStreet("");
+                    setNumber("");
+                    setComplement("");
+                    setZipCode("");
+                    setUnities([""]);
                   }}
                 />
                 <form onSubmit={createEnterprise}>
@@ -550,6 +565,10 @@ const Settings = () => {
                   onClick={() => {
                     setIsUserModalVisible(false);
                     setIsLoading(false);
+                    setNameUser("");
+                    setEmailUser("");
+                    setPhoneUser("");
+                    setSelectedEnterpriseIdUser("");
                   }}
                 />
                 <form onSubmit={createUser}>
@@ -574,7 +593,12 @@ const Settings = () => {
                         id="email"
                       />
                     </div>
-                    <div className="inputBlock">
+                    <div
+                      className="inputBlock"
+                      style={{
+                        width: "25%",
+                      }}
+                    >
                       <label htmlFor="phone">Phone</label>
                       <InputMask
                         value={phoneUser}
@@ -583,6 +607,33 @@ const Settings = () => {
                         name="phone"
                         id="phone"
                         mask="(99) 9 9999-9999"
+                      />
+                    </div>
+                    <div className="inputBlock">
+                      <label htmlFor="phone">Is Admin</label>
+                      <ToggleButton
+                        inactiveLabel={""}
+                        activeLabel={""}
+                        colors={{
+                          activeThumb: {
+                            base: "rgb(250,250,250)",
+                          },
+                          inactiveThumb: {
+                            base: "rgb(250,250,250)",
+                          },
+                          active: {
+                            base: "rgb(0, 128, 0)",
+                            hover: "rgb(0, 100, 0);",
+                          },
+                          inactive: {
+                            base: "rgb(65,66,68)",
+                            hover: "rgb(95,96,98)",
+                          },
+                        }}
+                        value={isAdmin}
+                        onToggle={(v) => {
+                          setIsAdmin(!v);
+                        }}
                       />
                     </div>
                   </div>

@@ -24,7 +24,20 @@ const User = () => {
         size={24}
       />
       <div className="content">
-        <h1>{user?.name}</h1>
+        <h1>
+          {user?.name}
+          {user?.isAdmin && (
+            <b
+              style={{
+                opacity: 0.35,
+                fontSize: "0.9rem",
+                marginLeft: "0.75rem",
+              }}
+            >
+              Admin
+            </b>
+          )}
+        </h1>
         <h3>{user?._id}</h3>
         <div className="infos">
           <div>

@@ -25,39 +25,29 @@ const AuthProvider = ({ children }) => {
   ] = useStateM(undefined);
   const [isNotificationVisible, setIsNotificationVisible] = useState(false);
 
-  function login(username, password) {
-    return new Promise((resolve, reject) => {
-      api
-        .post("/mongo-db/login-web", {
-          email: username,
-          password,
-        })
-        .then(({ data }) => {
-          data.user && setUser(data.user);
-
-          data.user &&
-            localStorage.setItem(
-              "@prime-control-platform-user",
-              JSON.stringify(data.user)
-            );
-          data.token &&
-            localStorage.setItem("@prime-control-platform-token", data.token);
-
-          if (data.token) api.defaults.headers["Authorization"] = data.token;
-
-          history.push("/app");
-          resolve(data);
-        })
-        .catch((err) => {
-          reject(err);
-        });
+  async function login(username, password) {
+    const { data } = await api.post("/mongo-db/login-web", {
+      email: username,
+      password,
     });
+
+    data.user && setUser(data.user);
+
+    data.user &&
+      localStorage.setItem(
+        "@prime-control-platform-user",
+        JSON.stringify(data.user)
+      );
+    data.token &&
+      localStorage.setItem("@prime-control-platform-token", data.token);
+
+    if (data.token) api.defaults.headers["Authorization"] = data.token;
+
+    history.push("/app");
   }
 
   function logout() {
-    localStorage.removeItem("@prime-control-platform-user");
-    localStorage.removeItem("@prime-control-platform-token");
-    history.replace("/");
+    alert("LOGOUT");
   }
 
   function notify(type, text) {
@@ -88,19 +78,31 @@ const AuthProvider = ({ children }) => {
     let lUser = localStorage.getItem("@prime-control-platform-user");
     let lToken = localStorage.getItem("@prime-control-platform-token");
 
-    if (!!lUser && !!lToken) {
-      setUser(JSON.parse(lUser));
-      api.defaults.headers["Authorization"] = lToken;
-      api.get("/mongo-db/enterprise/find/all").then(({ data }) => {
-        setEnterprises(data);
+    api
+      .post("/mongo-db/validate-token", {
+        user: lUser,
+        token: lToken,
+      })
+      .then(() => {
+        setUser(JSON.parse(lUser));
+        api.defaults.headers["Authorization"] = lToken;
+        api.get("/mongo-db/enterprise/find/all").then(({ data }) => {
+          setEnterprises(data);
+        });
+        api.get(`/mongo-db/user/all`).then(({ data }) => {
+          setUsers(data);
+        });
+        return history.replace("/app");
+      })
+      .catch((err) => {
+        localStorage.removeItem("@prime-control-platform-user");
+        localStorage.removeItem("@prime-control-platform-token");
+        history.replace("/");
+        return notify(
+          "error",
+          err.response.status === 400 ? "Invalid Token!" : err.message
+        );
       });
-      api.get("/mongo-db/user/all").then(({ data }) => {
-        setUsers(data);
-      });
-      return history.replace("/app");
-    } else {
-      return history.replace("/");
-    }
   }
 
   return (
