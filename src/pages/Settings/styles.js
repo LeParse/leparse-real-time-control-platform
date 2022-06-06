@@ -87,6 +87,21 @@ export const Container = styled.div`
           }
         }
       }
+
+      .searchInput {
+        background-color: transparent;
+        font-size: 1rem;
+        color: black;
+        padding: 1rem;
+        outline: none;
+        border-bottom: 1px solid rgb(0, 128, 0);
+        transition: 0.2s ease;
+        margin-left: 1rem;
+
+        &:focus {
+          border-bottom: 1px solid rgb(0, 200, 0);
+        }
+      }
     }
   }
 `;

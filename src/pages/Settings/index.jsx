@@ -19,6 +19,10 @@ const Settings = () => {
   const { notify, users, setUsers, enterprises, setEnterprises } = useAuth();
   const history = useHistory();
 
+  const [searchUserInputValue, setSearchUserInputValue] = useState("");
+  const [searchEnterpriseInputValue, setSearchEnterpriseInputValue] =
+    useState("");
+
   const [name, setName] = useState("");
   const [partner, setPartner] = useState("");
   const [email, setEmail] = useState("");
@@ -263,25 +267,58 @@ const Settings = () => {
         <h1 className="title">Settings</h1>
         <div className="block">
           <h1>Enterprises</h1>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <input
+              value={searchEnterpriseInputValue}
+              onChange={(e) => {
+                setSearchEnterpriseInputValue(e.target.value);
+              }}
+              className="searchInput"
+              type="text"
+            />
+            <AiOutlineSearch size={18} />
+          </div>
           <div className="list">
-            {enterprises.map((_, i) => {
-              return (
-                <div
-                  onClick={() => {
-                    showEnterpriseInfo(i);
-                  }}
-                  key={i}
-                  className="listItem"
-                >
-                  <h3>{_.name}</h3>
-                  <AiFillCloseCircle
-                    onClick={() => removeEnterprise(i)}
-                    size={18}
-                    color="rgb(0,100,0)"
-                  />
-                </div>
-              );
-            })}
+            {enterprises
+              .filter((v) => {
+                if (searchEnterpriseInputValue === "") {
+                  return v;
+                } else if (
+                  v.name
+                    .toLowerCase()
+                    .includes(searchEnterpriseInputValue.toLowerCase())
+                ) {
+                  return v;
+                }
+
+                return undefined;
+              })
+              .map((e, i) => {
+                return (
+                  <div
+                    onClick={() => {
+                      let index = enterprises.indexOf(e);
+                      showEnterpriseInfo(index);
+                    }}
+                    key={i}
+                    className="listItem"
+                  >
+                    <h3>{e.name}</h3>
+                    <AiFillCloseCircle
+                      onClick={() => removeEnterprise(i)}
+                      size={18}
+                      color="rgb(0,100,0)"
+                    />
+                  </div>
+                );
+              })}
           </div>
           <button
             onClick={() => {
@@ -294,25 +331,58 @@ const Settings = () => {
         </div>
         <div className="block">
           <h1>Users</h1>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <input
+              value={searchUserInputValue}
+              onChange={(e) => {
+                setSearchUserInputValue(e.target.value);
+              }}
+              className="searchInput"
+              type="text"
+            />
+            <AiOutlineSearch size={18} />
+          </div>
           <div className="list">
-            {users.map((_, i) => {
-              return (
-                <div
-                  key={i}
-                  className="listItem"
-                  onClick={() => {
-                    showUserInfo(i);
-                  }}
-                >
-                  <h3>{_.name}</h3>
-                  <AiFillCloseCircle
-                    onClick={() => removeUser(i)}
-                    size={18}
-                    color="rgb(0,100,0)"
-                  />
-                </div>
-              );
-            })}
+            {users
+              .filter((v) => {
+                if (searchUserInputValue === "") {
+                  return v;
+                } else if (
+                  v.name
+                    .toLowerCase()
+                    .includes(searchUserInputValue.toLowerCase())
+                ) {
+                  return v;
+                }
+
+                return undefined;
+              })
+              .map((e, i) => {
+                return (
+                  <div
+                    key={i}
+                    className="listItem"
+                    onClick={() => {
+                      let index = users.indexOf(e);
+                      showUserInfo(index);
+                    }}
+                  >
+                    <h3>{e.name}</h3>
+                    <AiFillCloseCircle
+                      onClick={() => removeUser(i)}
+                      size={18}
+                      color="rgb(0,100,0)"
+                    />
+                  </div>
+                );
+              })}
           </div>
           <button
             onClick={() => {
@@ -680,6 +750,8 @@ const Settings = () => {
                         ) {
                           return v;
                         }
+
+                        return undefined;
                       })
                       .map((e, i) => {
                         return (

@@ -6,7 +6,6 @@ import { useAuth } from "../../contexts/auth";
 import {
   AiFillCloseCircle,
   AiFillPlusCircle,
-  AiOutlineSearch,
   AiOutlineArrowLeft,
 } from "react-icons/ai";
 import InputMask from "react-input-mask";

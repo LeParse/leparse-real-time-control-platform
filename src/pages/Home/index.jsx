@@ -42,7 +42,7 @@ const Home = () => {
     let groups = [];
 
     clientsData.map((c) => {
-      groups.indexOf(c.createdAt) === -1 && groups.push(c.createdAt);
+      return groups.indexOf(c.createdAt) === -1 && groups.push(c.createdAt);
     });
 
     groups = groups.map((g) => {
@@ -54,7 +54,7 @@ const Home = () => {
 
     clientsData.map((c) => {
       let index = groups.findIndex((g) => g.date === c.createdAt);
-      groups[index].Users += 1;
+      return (groups[index].Users += 1);
     });
 
     setClients(groups);
