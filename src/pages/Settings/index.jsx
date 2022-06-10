@@ -185,7 +185,7 @@ const Settings = () => {
           setEmailUser("");
           setPhoneUser("");
           setSelectedEnterpriseIdUser("");
-          notify("info", "E-mail with confirmation sent!");
+          notify("info", "E-mail with password sent!");
         })
         .catch((err) => {
           notify("error", "Error creating user!");
