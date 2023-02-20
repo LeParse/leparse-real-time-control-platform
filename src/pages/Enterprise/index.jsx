@@ -337,7 +337,7 @@ const Enterprise = () => {
                           key={i}
                         >
                           <input
-                            value={value}
+                            value={value.name}
                             onChange={(e) => handleText(e, i)}
                             type="text"
                             className="addUnitiesUnity"
