@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container, CreateEnterpriseModal } from "./styles";
 import { useHistory, useParams } from "react-router";
 import { useAuth } from "../../contexts/auth";
@@ -28,10 +28,15 @@ const User = () => {
   const [selectedEnterpriseIdUser, setSelectedEnterpriseIdUser] = useState(
     enterprises.filter((e) => e._id === user?.cod_enterprise)[0]?._id
   );
+  const [selectedUnities, setSelectedUnities] = useState([]);
 
   const [isUserModalVisible, setIsUserModalVisible] = useState(false);
   const [searchEnterpriseModalInputValue, setSearchEnterpriseModalInputValue] =
     useState("");
+  const [
+    searchEnterpriseUnitiesModalInputValue,
+    setSearchEnterpriseUnitiesModalInputValue,
+  ] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -70,7 +75,7 @@ const User = () => {
       email: emailUser,
       phone: phoneUser,
       cod_enterprise: selectedEnterpriseIdUser,
-      cod_unity: [],
+      cod_unity: selectedUnities,
       groups: ["Admin", "Gerente"],
       isAdmin,
     };
@@ -79,7 +84,8 @@ const User = () => {
       nameUser !== "" &&
       emailUser !== "" &&
       phoneUser !== "" &&
-      selectedEnterpriseIdUser !== ""
+      selectedEnterpriseIdUser !== "" &&
+      selectedUnities.length > 0
     ) {
       api
         .post("/mongo-db/user/update", usr)
@@ -105,6 +111,20 @@ const User = () => {
       setIsLoading(false);
     }
   }
+
+  function selectUnity(i) {
+    if (selectedUnities.indexOf(i) > -1) {
+      setSelectedUnities(
+        selectedUnities.slice(0, i).concat(selectedUnities.slice(i + 1))
+      );
+    } else {
+      setSelectedUnities([...selectedUnities, i]);
+    }
+  }
+
+  useEffect(() => {
+    setSelectedUnities(user?.cod_unity);
+  }, []);
 
   return (
     <Container>
@@ -314,6 +334,70 @@ const User = () => {
                             key={i}
                             className={`enterpriseSelect ${
                               selectedEnterpriseIdUser === e._id &&
+                              " enterpriseSelected"
+                            }`}
+                          >
+                            {e.name ? e.name : "Prime Automacao"}
+                          </div>
+                        );
+                      })}
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      width: "100%",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <h3>Unities</h3>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <AiOutlineSearch size={18} />
+                      <input
+                        value={searchEnterpriseUnitiesModalInputValue}
+                        onChange={(e) => {
+                          setSearchEnterpriseUnitiesModalInputValue(
+                            e.target.value
+                          );
+                        }}
+                        className="searchInput"
+                        type="text"
+                      />
+                    </div>
+                  </div>
+                  <div className="enterprisesContainer">
+                    {enterprises
+                      ?.find((e) => e._id === selectedEnterpriseIdUser)
+                      ?.unities?.filter((v) => {
+                        if (searchEnterpriseUnitiesModalInputValue === "") {
+                          return v;
+                        } else if (
+                          v.name
+                            .toLowerCase()
+                            .includes(
+                              searchEnterpriseUnitiesModalInputValue.toLowerCase()
+                            )
+                        ) {
+                          return v;
+                        }
+
+                        return undefined;
+                      })
+                      .map((e, i) => {
+                        return (
+                          <div
+                            onClick={() => selectUnity(i)}
+                            key={i}
+                            className={`enterpriseSelect ${
+                              selectedUnities.indexOf(i) > -1 &&
                               " enterpriseSelected"
                             }`}
                           >

@@ -65,7 +65,7 @@ const Enterprise = () => {
   });
 
   function addUnity() {
-    let uns = unities.concat([""]);
+    let uns = unities.concat([{}]);
     setUnities(uns);
   }
 
@@ -76,13 +76,16 @@ const Enterprise = () => {
 
   function handleText(e, i) {
     let uns = [...unities];
-    uns[i] = e.target.value;
+    uns[i].name = e.target.value;
     setUnities(uns);
   }
 
   function edit(e) {
     e.preventDefault();
     setIsLoading(true);
+
+    console.log(unities);
+
     if (
       name !== "" &&
       partner !== "" &&
@@ -324,7 +327,7 @@ const Enterprise = () => {
                   </div>
                   <h3>Unities</h3>
                   <div className="addUnitiesContainer">
-                    {unities.map((value, i) => {
+                    {unities.map((unitie, i) => {
                       return (
                         <div
                           style={{
@@ -337,7 +340,7 @@ const Enterprise = () => {
                           key={i}
                         >
                           <input
-                            value={value.name}
+                            value={unitie.name}
                             onChange={(e) => handleText(e, i)}
                             type="text"
                             className="addUnitiesUnity"
