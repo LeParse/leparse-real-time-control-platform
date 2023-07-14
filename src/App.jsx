@@ -21,13 +21,13 @@ function App() {
             path="/verify-email/:token/:id"
             component={VerifyEmail}
           />
-          <Route path="/" component={Authentication} />
-          <Route exact path="/app">
+          <Route exact path="/" component={Authentication} />
+          <Route path="/app">
             <TopBar />
-            <Route exact path="/app" component={Home} />
-            <Route exact path="/app/settings" component={Settings} />
-            <Route exact path="/app/enterprise/:id" component={Enterprise} />
-            <Route exact path="/app/user/:id" component={User} />
+            <Route path="/app" component={Home} />
+            <Route path="/app/settings" component={Settings} />
+            <Route path="/app/enterprise/:id" component={Enterprise} />
+            <Route path="/app/user/:id" component={User} />
           </Route>
         </Switch>
         <Dock />
