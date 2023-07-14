@@ -22,7 +22,7 @@ function App() {
             component={VerifyEmail}
           />
           <Route path="/" component={Authentication} />
-          <Route path="/app">
+          <Route exact path="/app">
             <TopBar />
             <Route exact path="/app" component={Home} />
             <Route exact path="/app/settings" component={Settings} />
