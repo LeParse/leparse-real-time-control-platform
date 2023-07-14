@@ -21,7 +21,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
     "build": "PUBLIC_URL=https://api.leparse.tech/control-platform react-scripts build && rm -rf ../../services/real-time-control-platform-server/build && mv build ../../services/real-time-control-platform-server",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -48,6 +48,7 @@ const AuthProvider = ({ children }) => {
 
   function logout() {
     alert("LOGOUT");
+    history.push("/");
   }
 
   function notify(type, text) {
@@ -77,7 +78,6 @@ const AuthProvider = ({ children }) => {
   function verifyUser() {
     let lUser = localStorage.getItem("@prime-control-platform-user");
     let lToken = localStorage.getItem("@prime-control-platform-token");
-
     api
       .post("/mongo-db/validate-token", {
         user: lUser,
