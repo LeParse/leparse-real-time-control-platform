@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://api.leparse.tech:3030",
+  baseURL: "https://api.leparse.tech/real-time",
   // baseURL: "http://localhost:3030/",
 });
 
