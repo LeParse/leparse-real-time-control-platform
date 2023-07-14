@@ -16,7 +16,7 @@ const Dock = () => {
       <Link className="links" to="/app/settings">
         <AiFillSetting size={24} color="rgb(0,128,0)" />
       </Link>
-      <Link className="links" to="#" onClick={logout}>
+      <Link className="links" to="/auth" onClick={logout}>
         <AiOutlineLogout size={24} color="rgb(0,128,0)" />
       </Link>
     </Container>

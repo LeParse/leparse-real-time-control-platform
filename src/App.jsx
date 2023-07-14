@@ -6,7 +6,6 @@ import Settings from "./pages/Settings";
 import VerifyEmail from "./pages/VerifyEmail";
 import User from "./pages/User";
 import Enterprise from "./pages/Enterprise";
-
 import TopBar from "./components/TopBar";
 import Dock from "./components/Dock";
 
@@ -22,7 +21,7 @@ function App() {
             path="/verify-email/:token/:id"
             component={VerifyEmail}
           />
-          <Route exact path="/" component={Authentication} />
+          <Route exact path="/auth" component={Authentication} />
           <Route path="/app">
             <TopBar />
             <Route exact path="/app" component={Home} />
